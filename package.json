@@ -1,0 +1,13 @@
+{
+  "name": "derpchat",
+  "description": "Derpy chat",
+  "version": "0.0.0",
+  "dependencies": {
+    "socket.io": "0.9.6"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
