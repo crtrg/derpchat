@@ -35,11 +35,15 @@
       comment.value = '';
     }
 
-%h2= @room
-%div#form
-  %form#comment_form{:onsubmit => 'post_comment(); return false'}
-    %input#comment{:type=>'text', :style => 'width:200px'}
-    %input#submit{:type=>'button', :value=>'send', :onclick=>'post_comment();'}
-  %span#msg
-%table#comments
+.container
+  .row
+    .span12
+
+      %h2= @room
+      %div#form
+        %form#comment_form{:onsubmit => 'post_comment(); return false'}
+          %input#comment{:type=>'text', :style => 'width:200px'}
+          %input#submit.btn.info{:type=>'button', :value=>'send', :onclick=>'post_comment();'}
+        %span#msg
+      %table#comments
 

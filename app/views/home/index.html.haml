@@ -6,7 +6,7 @@
     %input{:name=>'room', :type=>'text', :value=>'test'}
   %label
     UserName
-    %input{:name=>'user', :type=>'text', :value=>'noname'}
+    %input{:name=>'user', :type=>'text', :value=> session[:user] || 'noname'}
 
   %input{:type=>'submit'}
 
