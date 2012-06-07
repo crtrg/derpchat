@@ -1,0 +1,12 @@
+%h1 chat
+= @message
+%form{:name=>'room_join', :action=> rooms_path, :method=>'POST'}
+  %label
+    RoomName
+    %input{:name=>'room', :type=>'text', :value=>'test'}
+  %label
+    UserName
+    %input{:name=>'user', :type=>'text', :value=>'noname'}
+
+  %input{:type=>'submit'}
+
