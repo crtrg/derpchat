@@ -4,6 +4,8 @@ require 'json'
 require 'uri'
 require 'logger'
 
+require 'v8'
+
 EM.run do
   @logger = Logger.new(STDOUT)
   @channels = {}
