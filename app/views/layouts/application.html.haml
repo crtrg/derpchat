@@ -7,13 +7,16 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
 
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+
     = yield :head
   %body
     .container
       .row
-        .span4.offset4
-          %center
-            %h1 derpchat
+        .span8.offset2
+          .title
+            %h1
+              = link_to_unless_current 'derpchat', root_path
 
     = yield
 

@@ -1,49 +1,17 @@
 - content_for :head do
   %title= @room
   %script
-    var room_name = "#{ @room }";
-    var user_name = "#{ @user }";
-
-  :javascript
-    function message(str) {
-      var msg = document.getElementById('msg');
-      msg.innerHTML += str;
-    }
-
-    ws = new WebSocket('ws://' + SOCKET_HOST + '/?room='+room_name+'&user='+user_name);
-
-    ws.onmessage = function (e) {
-      var data = JSON.parse(e.data);
-      var comments = document.getElementById('comments');
-      comments.innerHTML = "<tr><td class='user_name'>" +
-        data['user'] + "</td><td class='comment'>" +
-        data['comment'] + "</td></tr>" +
-        comments.innerHTML;
-    }
-
-    ws.onclose = function () {
-      message('disconnected');
-    }
-
-    ws.onopen= function () {
-      message('connected');
-    }
-
-    var post_comment = function () {
-      comment = document.getElementById('comment');
-      ws.send(comment.value);
-      comment.value = '';
-    }
+    var room = new Derp.Room('#{@room}', '#{@user}');
 
 .container
   .row
-    .span12
-
+    .span8.offset2
       %h2= @room
       %div#form
-        %form#comment_form{:onsubmit => 'post_comment(); return false'}
-          %input#comment{:type=>'text', :style => 'width:200px'}
-          %input#submit.btn.info{:type=>'button', :value=>'send', :onclick=>'post_comment();'}
+        %form.form-inline#comment_form{:onsubmit => 'room.sendMessage(); return false'}
+          %input.span4#comment{:type=>'text'}
+          %input#submit.btn.info{:type=>'button', :value=>'send', :onclick=>'room.sendMessage();'}
         %span#msg
-      %table#comments
+
+      %table.table.table-condensed#comments
 

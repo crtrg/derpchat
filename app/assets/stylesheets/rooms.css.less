@@ -1,0 +1,19 @@
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+
+.message {
+  .clearfix();
+  margin-bottom: 16px;
+  margin-left: -20px;
+
+  .username {
+    .makeColumn(2);
+    color: @blue;
+    &.myself {
+      color: @green;
+    }
+  }
+  .comment {
+    .makeColumn(6);
+  }
+}

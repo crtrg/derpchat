@@ -1,12 +1,15 @@
-%h1 chat
-= @message
-%form{:name=>'room_join', :action=> rooms_path, :method=>'POST'}
-  %label
-    RoomName
-    %input{:name=>'room', :type=>'text', :value=>'test'}
-  %label
-    UserName
-    %input{:name=>'user', :type=>'text', :value=> session[:user] || 'noname'}
+.container
+  .row
+    .span4.offset4
+      %h3 join or create
+      = @message
+      %form.well{:name=>'room_join', :action=> rooms_path, :method=>'POST'}
+        %label{for: 'room'} Room name
+        %input{:name=>'room', :type=>'text', :placeholder => 'Name a room'}
+        %label{for: 'user'} Your name
+        %input{name: 'user', type: 'text', placeholder: 'Name yourself'}
 
-  %input{:type=>'submit'}
+        %br
+
+        %button.btn{:type=>'submit'} go
 

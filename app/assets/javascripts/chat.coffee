@@ -1,7 +1,4 @@
-
-class ChatEngine
-  constructor: ->
-    @sc = new SocketChat()
-
-
-window.Chat = ChatEngine
+# class ChatEngine
+#   constructor: ->
+#     @sc = new SocketChat()
+# window.Chat = ChatEngine

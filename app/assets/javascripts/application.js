@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//
 //= require twitter/bootstrap
-//
+//= require backbone-rails
+//= require handlebars
+//= require 'init'
+//= require 'socket_chat'
 //= require_tree .
 
