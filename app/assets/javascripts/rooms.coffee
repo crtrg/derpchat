@@ -2,19 +2,32 @@ class Derp.Room
   constructor: (@room, @user) ->
     @ws = new WebSocket "ws://#{ SOCKET_HOST }/#{@room}/#{@user}"
 
-    @ws.onmessage = (e) =>
-      data = JSON.parse(e.data)
+    @ws.onmessage = (evt) =>
+      data = JSON.parse(evt.data)
+
+      if data['user'] == 'system'
+        userClass = 'system'
+        console.dir data
+        @setParticipants(data['members'])
+      else
+        userClass = if data['user'] == @user
+                      'myself'
+                    else
+                      ''
+
       comments = $('#comments')
 
       comments.append """
         <div class='message'>
-          <div class='username #{if (data['user'] == @user) then 'myself' else '' }'>#{data['user']}</div>
+          <div class='username #{userClass}'>#{data['user']}</div>
           <div class='comment'>#{data['comment']}</div>
         </div>
       """
 
     @ws.onclose = => @setStatus('disconnected')
-    @ws.onopen = => @setStatus('connected')
+
+    @ws.onopen = (evt) =>
+      @setStatus('connected')
 
   sendMessage: ->
     @ws.send $('#comment').val()
@@ -22,3 +35,14 @@ class Derp.Room
 
   setStatus: (str) ->
     $('#msg').text str
+    if str == 'connected'
+      $('#msg').css color: '#0a0'
+    else if str == 'disconnected'
+      $('#msg').css color: '#a00'
+
+  setParticipants: (list) ->
+
+    $('ul.participants').empty()
+    for p in _(list).values()
+      $('ul.participants').append("<li>#{p}</li>")
+

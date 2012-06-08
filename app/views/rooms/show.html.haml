@@ -6,12 +6,23 @@
 .container
   .row
     .span8.offset2
-      %h2= @room
+      %h2.room-heading
+        %small room
+        = @room
+
+  .row
+    .span2
+      %strong participants
+      %ul.participants.unstyled
+
+    .span8
+      %table.table.table-condensed#comments
+
+  .row
+    .span8.offset2
       %div#form
         %form.form-inline#comment_form{:onsubmit => 'room.sendMessage(); return false'}
           %input.span4#comment{:type=>'text'}
           %input#submit.btn.info{:type=>'button', :value=>'send', :onclick=>'room.sendMessage();'}
-        %span#msg
-
-      %table.table.table-condensed#comments
+          %span#msg
 
