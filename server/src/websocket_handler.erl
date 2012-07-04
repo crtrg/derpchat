@@ -7,15 +7,12 @@
 -export([websocket_init/3, websocket_handle/3,
 	websocket_info/3, websocket_terminate/3]).
 
-init({_Any, http}, Req, []) ->
-	case cowboy_http_req:header('Upgrade', Req) of
-		{undefined, Req2} -> {ok, Req2, undefined};
-		{<<"websocket">>, _Req2} -> {upgrade, protocol, cowboy_http_websocket};
-		{<<"WebSocket">>, _Req2} -> {upgrade, protocol, cowboy_http_websocket}
-	end.
+init({_Any, http}, _Req, []) ->
+  {upgrade, protocol, cowboy_http_websocket}.
 
-handle(Req, State) ->
-	{ok, Req2} = cowboy_http_req:reply(200, [{'Content-Type', <<"text/html">>}],<<"">>, Req),
+% nope, just 404 all http requests
+handle(_Req, State) ->
+  {ok, Req2} = cowboy_http_req:reply(404, [{'Content-Type', <<"text/html">>}]),
 	{ok, Req2, State}.
 
 terminate(_Req, _State) ->

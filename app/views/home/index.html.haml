@@ -28,6 +28,8 @@
 
   var ws = new WebSocket("ws://" + window.location.hostname + ":8081/io");
   ws.onopen = function() {
+    console.log("connected to websocket");
+
     // websocket is connected
     addStatus("websocket connected!");
     // send hello data to server.
@@ -35,10 +37,14 @@
     addStatus("sent message to server: 'hello server'!");
   };
   ws.onmessage = function (evt) {
+    console.log("websocket msg received");
+
     var receivedMsg = evt.data;
     addStatus("server sent the following: '" + receivedMsg + "'");
   };
   ws.onclose = function() {
+    console.log("websocket closed");
+
     // websocket was closed
     addStatus("websocket was closed");
   };
