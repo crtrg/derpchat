@@ -1,0 +1,13 @@
+{application, chat_server, [
+	{description, "Websocket based chat server"},
+	{vsn, "0.1.0"},
+	{modules, []},
+	{registered, [chat_server_sup]},
+	{applications, [
+		kernel,
+		stdlib,
+		cowboy
+	]},
+	{mod, {chat_server, []}},
+	{env, []}
+]}.
