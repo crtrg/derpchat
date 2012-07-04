@@ -1,4 +1,4 @@
-%% Feel free to use, reuse and abuse the code in this file.
+%%
 
 -module(websocket_handler).
 -behaviour(cowboy_http_handler).

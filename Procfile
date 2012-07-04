@@ -1,3 +1,4 @@
 web: bundle exec rails server -p $PORT
-ws:  bundle exec ruby chat.rb
+ws:  ./server/start.sh
+# ws:  bundle exec ruby chat.rb
 

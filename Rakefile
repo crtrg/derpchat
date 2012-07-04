@@ -4,4 +4,14 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+namespace :server do
+  task :build => :clean do
+    system "cd server && make"
+  end
+
+  task :clean do
+    system "cd server && make clean"
+  end
+end
+
 Derpchat::Application.load_tasks

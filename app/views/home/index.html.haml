@@ -1,3 +1,4 @@
+
 .container
   .row
     .span4.offset4
@@ -13,3 +14,31 @@
 
         %button.btn{:type=>'submit'} go
 
+  .row
+    .span8.offset2
+      #demo-messages
+
+:javascript
+  function addStatus(text){
+    var date = new Date();
+    document.getElementById('demo-messages').innerHTML
+      = document.getElementById('demo-messages').innerHTML
+      + date + ": " + text + "<br/>";
+  }
+
+  var ws = new WebSocket("ws://" + window.location.hostname + ":8081/io");
+  ws.onopen = function() {
+    // websocket is connected
+    addStatus("websocket connected!");
+    // send hello data to server.
+    ws.send("hello server!");
+    addStatus("sent message to server: 'hello server'!");
+  };
+  ws.onmessage = function (evt) {
+    var receivedMsg = evt.data;
+    addStatus("server sent the following: '" + receivedMsg + "'");
+  };
+  ws.onclose = function() {
+    // websocket was closed
+    addStatus("websocket was closed");
+  };
